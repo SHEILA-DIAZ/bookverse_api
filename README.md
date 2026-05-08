@@ -1,48 +1,79 @@
-# BookVerse API
+# 📚 BookVerse API
 
-API REST desarrollada con Django y Django REST Framework para gestionar libros y autores en una biblioteca virtual.
+API REST con **Django** y **Django REST Framework** para gestionar una biblioteca virtual con libros y autores.
 
-## Tecnologías usadas
+---
 
-- Python
-- Django
-- Django REST Framework
-- SQLite
-- Postman
+## 🛠️ Tecnologías usadas
 
-## Ejecutar servidor
+| Tecnología | Descripción |
+|---|---|
+| Python | Lenguaje principal |
+| Django | Framework web |
+| Django REST Framework | API REST |
+| SQLite | Base de datos |
+| Postman | Cliente de pruebas |
+
+---
+
+## ⚙️ Ejecutar el servidor
 
 ```bash
+git clone https://github.com/SHEILA-DIAZ/bookverse_api.git
+cd bookverse_api
+python -m venv venv
+venv\Scripts\activate
+pip install django djangorestframework
+python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver
 ```
 
-## Endpoints
+Disponible en: `http://127.0.0.1:8000/`
 
-### Autores
+---
 
-- GET `http://127.0.0.1:8000/api/autores/`
-- POST `http://127.0.0.1:8000/api/autores/`
-- PUT `http://127.0.0.1:8000/api/autores/1/`
-- DELETE `http://127.0.0.1:8000/api/autores/1/`
+## 📌 Endpoints
 
-Ejemplo POST Autor:
+### 👤 Autores — `/api/autores/`
 
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/autores/` | Listar autores |
+| POST | `/api/autores/` | Crear autor |
+| PUT | `/api/autores/{id}/` | Actualizar autor |
+| DELETE | `/api/autores/{id}/` | Eliminar autor |
+
+**POST — Body:**
 ```json
 {
   "nombre": "Gabriel García Márquez",
   "nacionalidad": "Colombiana"
 }
 ```
+**Respuesta `201 Created`:**
+```json
+{
+  "id": 1,
+  "nombre": "Gabriel García Márquez",
+  "nacionalidad": "Colombiana"
+}
+```
 
-### Libros
+---
 
-- GET `http://127.0.0.1:8000/api/libros/`
-- POST `http://127.0.0.1:8000/api/libros/`
-- PUT `http://127.0.0.1:8000/api/libros/1/`
-- DELETE `http://127.0.0.1:8000/api/libros/1/`
+### 📖 Libros — `/api/libros/`
 
-Ejemplo POST Libro:
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/libros/` | Listar libros |
+| POST | `/api/libros/` | Crear libro |
+| PUT | `/api/libros/{id}/` | Actualizar libro |
+| PATCH | `/api/libros/{id}/` | Actualizar parcialmente |
+| DELETE | `/api/libros/{id}/` | Eliminar libro |
+| GET | `/api/libros/?search=` | Buscar por título o género |
 
+**POST — Body:**
 ```json
 {
   "titulo": "Cien años de soledad",
@@ -52,120 +83,57 @@ Ejemplo POST Libro:
 }
 ```
 
-## Búsqueda
-
-- GET `http://127.0.0.1:8000/api/libros/?search=soledad`
-- GET `http://127.0.0.1:8000/api/libros/?search=Realismo`
-
-## Relación entre entidades
-
-Cada libro está relacionado con un autor.
-
-La respuesta del endpoint de libros muestra:
-
+**Respuesta `201 Created`:**
 ```json
 {
+  "id": 1,
+  "titulo": "Cien años de soledad",
+  "anio_publicacion": 1967,
+  "genero": "Realismo mágico",
+  "autor": 1,
   "autor_nombre": "Gabriel García Márquez",
   "autor_nacionalidad": "Colombiana"
 }
 ```
 
-## Capturas del Proyecto
+> ✨ **Punto extra:** la respuesta incluye `autor_nombre` y `autor_nacionalidad` de la entidad relacionada.
 
-### 01.png → Servidor Django
+**Búsqueda:**
+```bash
+GET http://127.0.0.1:8000/api/libros/?search=Novela
+GET http://127.0.0.1:8000/api/libros/?search=soledad
+```
 
-Descripción:
-Servidor Django ejecutándose correctamente con `python manage.py runserver`.
+---
 
+## 🖼️ Capturas
+
+### 01 — Servidor Django
 ![Servidor Django](docs/capturas/01.png)
 
----
-
-### 02.png → Estructura del Proyecto
-
-Descripción:
-Estructura general del proyecto en Visual Studio Code.
-
+### 02 — Estructura del proyecto
 ![Estructura Proyecto](docs/capturas/02.png)
 
----
-
-### 03.png → Models
-
-Descripción:
-Archivo `models.py` mostrando las entidades Autor y Libro.
-
+### 03 — models.py
 ![Models](docs/capturas/03.png)
 
----
-
-### 04.png → Serializers
-
-Descripción:
-Archivo `serializers.py` mostrando los serializers de Autor y Libro.
-
+### 04 — serializers.py
 ![Serializers](docs/capturas/04.png)
 
----
-
-### 05.png → Views
-
-Descripción:
-Archivo `views.py` mostrando los ViewSets implementados con Django REST Framework.
-
+### 05 — views.py
 ![Views](docs/capturas/05.png)
 
----
-
-### 06.png → GET Autores
-
-Descripción:
-Prueba del endpoint GET `/api/autores/` en Postman.
-
+### 06 — GET /api/autores/
 ![GET Autores](docs/capturas/06.png)
 
----
-
-### 07.png → POST Autor
-
-Descripción:
-Creación de un autor mediante endpoint POST.
-
+### 07 — POST /api/autores/
 ![POST Autor](docs/capturas/07.png)
 
----
-
-### 08.png → POST Libro
-
-Descripción:
-Registro de un libro relacionado con un autor.
-
+### 08 — POST /api/libros/
 ![POST Libro](docs/capturas/08.png)
 
----
-
-### 09.png → Search Libro
-
-Descripción:
-Búsqueda de libros usando `?search=`.
-
+### 09 — Búsqueda ?search=Novela
 ![Search Libro](docs/capturas/09.png)
 
----
-
-### 10.png → GitHub
-
-Descripción:
-Repositorio GitHub del proyecto mostrando commits y README.
-
+### 10 — Repositorio GitHub
 ![GitHub](docs/capturas/10.png)
-![Servidor Django](bookverse_api/docs/capturas/01.png)
-![Estructura Proyecto](bookverse_api/docs/capturas/02.png)
-![Models](bookverse_api/docs/capturas/03.png)
-![Serializers](bookverse_api/docs/capturas/04.png)
-![Views](bookverse_api/docs/capturas/05.png)
-![GET Autores](bookverse_api/docs/capturas/06.png)
-![POST Autor](bookverse_api/docs/capturas/07.png)
-![POST Libro](bookverse_api/docs/capturas/08.png)
-![Search Libro](bookverse_api/docs/capturas/09.png)
-![GitHub](bookverse_api/docs/capturas/10.png)
