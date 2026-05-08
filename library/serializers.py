@@ -22,3 +22,4 @@ class LibroSerializer(serializers.ModelSerializer):
             'autor_nombre',
             'autor_nacionalidad'
         ]
+        
