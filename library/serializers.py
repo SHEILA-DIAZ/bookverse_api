@@ -22,4 +22,4 @@ class LibroSerializer(serializers.ModelSerializer):
             'autor_nombre',
             'autor_nacionalidad'
         ]
-        
+#serializer para el modelo Autor, incluyendo todos los campos del modelo.
