@@ -159,11 +159,13 @@ Descripción:
 Repositorio GitHub del proyecto mostrando commits y README.
 
 ![GitHub](docs/capturas/10.png)
-
-## Video YouTube
-
-Pendiente
-
-## GitHub
-
-Pendiente
+![Servidor Django](bookverse_api/docs/capturas/01.png)
+![Estructura Proyecto](bookverse_api/docs/capturas/02.png)
+![Models](bookverse_api/docs/capturas/03.png)
+![Serializers](bookverse_api/docs/capturas/04.png)
+![Views](bookverse_api/docs/capturas/05.png)
+![GET Autores](bookverse_api/docs/capturas/06.png)
+![POST Autor](bookverse_api/docs/capturas/07.png)
+![POST Libro](bookverse_api/docs/capturas/08.png)
+![Search Libro](bookverse_api/docs/capturas/09.png)
+![GitHub](bookverse_api/docs/capturas/10.png)
